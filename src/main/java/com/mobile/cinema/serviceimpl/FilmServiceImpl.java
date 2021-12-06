@@ -20,7 +20,6 @@ public class FilmServiceImpl implements FilmService {
     FilmRepository filmRepository;
     CountryRepository countryRepository;
     GenreRepository genreRepository;
-    AgeRatingRepository ageRatingRepository;
     BuyingFilmsRepository buyingFilmsRepository;
 
     @Override
@@ -54,15 +53,6 @@ public class FilmServiceImpl implements FilmService {
     }
 
     @Override
-    public Page<Film> getFilmsByAgeRating(Long ageRatingId, PageDto pageDto) {
-        if(!ageRatingRepository.existsById(ageRatingId))
-            throw new ResourceNotFoundException(
-                    "The age rating with id=" + ageRatingId + " does not exist.");
-
-        return filmRepository.findAllByAgeRating_Id(ageRatingId, pageDto.getPageable());
-    }
-
-    @Override
     public Film addFilm(FilmModel filmModel) {
         Country country = countryRepository
                 .findById(filmModel.getCountryId())
@@ -74,18 +64,11 @@ public class FilmServiceImpl implements FilmService {
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "The genre with id=" + filmModel.getGenreId() + " does not exist."));
 
-        AgeRating ageRating = ageRatingRepository
-                .findById(filmModel.getAgeRatingId())
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "The age rating with id=" + filmModel.getAgeRatingId() + " does not exist."));
-
-
-
         if (filmRepository.existsByNameAndDate(filmModel.getName(), filmModel.getDate())) {
             throw new ResourceAlreadyExistsException("The film with such name and date already exists.");
         }
         Film film = new Film(filmModel.getName(), filmModel.getPrice(),
-                filmModel.getDate(), filmModel.getRating(), ageRating, genre, country);
+                filmModel.getDate(), genre, country);
         filmRepository.save(film);
         return film;
     }

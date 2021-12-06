@@ -17,8 +17,6 @@ public interface FilmService {
 
     Page<Film> getFilmsByGenre(Long genreId, PageDto pageDto);
 
-    Page<Film> getFilmsByAgeRating(Long ageRatingId, PageDto pageDto);
-
     Film addFilm(FilmModel filmModel);
 
     Film updateFilm(Film film);

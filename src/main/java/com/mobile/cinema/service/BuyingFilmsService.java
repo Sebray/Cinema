@@ -8,8 +8,6 @@ import org.springframework.data.domain.Page;
 public interface BuyingFilmsService {
     Page<BuyingFilms> getFilmsByAccountId(Long accountId, PageDto pageDto);
 
-    Page<BuyingFilms> getFavoriteFilmsByAccountId(Long accountId, PageDto pageDto);
-
     BuyingFilms addBuyingFilm(BuyingFilmsModel buyingFilmsModel);
 
     BuyingFilms updateBuyingFilm(BuyingFilms buyingFilm);

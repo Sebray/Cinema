@@ -27,10 +27,6 @@ public class AccountModel {
     @JsonProperty(value = "lastName")
     private String lastName;
 
-    @JsonProperty(value = "birthday")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date birthday;
-
     @JsonProperty(value = "countryId")
     private Long countryId;
 }

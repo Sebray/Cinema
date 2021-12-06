@@ -33,21 +33,9 @@ public class BuyingFilms implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
-    @Column(name = "is_favorite")
-    private boolean favorite = false;
-
-    @Column(name = "comment")
-    private String comment;
-
-    @Column(name = "score")
-    private int score = 0;
-
-    public BuyingFilms(Film film, Account account, Date date, Boolean favorite, String comment, int score) {
+    public BuyingFilms(Film film, Account account, Date date) {
         this.film = film;
         this.account = account;
         this.date = date;
-        this.favorite = favorite;
-        this.comment = comment;
-        this.score = score;
     }
 }

@@ -30,11 +30,6 @@ public class FilmController {
         return new ResponseEntity<>(filmService.getFilmsByCountry(id, pageDto), HttpStatus.OK);
     }
 
-    @GetMapping("/age_rating/{id}")
-    public ResponseEntity<Page<Film>> getFilmsByAgeRating(@PathVariable Long id, PageDto pageDto) {
-        return new ResponseEntity<>(filmService.getFilmsByAgeRating(id, pageDto), HttpStatus.OK);
-    }
-
     @GetMapping("/genre/{id}")
     public ResponseEntity<Page<Film>> getFilmsByGenre(@PathVariable Long id, PageDto pageDto) {
         return new ResponseEntity<>(filmService.getFilmsByGenre(id, pageDto), HttpStatus.OK);

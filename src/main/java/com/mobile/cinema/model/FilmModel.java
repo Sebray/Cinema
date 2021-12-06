@@ -24,12 +24,6 @@ public class FilmModel {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
-    @JsonProperty(value = "rating")
-    private int rating = 0;
-
-    @JsonProperty(value = "ageRatingId")
-    private Long ageRatingId;
-
     @JsonProperty(value = "genreId")
     private Long genreId;
 

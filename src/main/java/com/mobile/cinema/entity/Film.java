@@ -30,14 +30,6 @@ public class Film {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
-    @Column(name = "rating")
-    private int rating = 0;
-
-    @NonNull
-    @JoinColumn(name = "age_rating_id")
-    @ManyToOne
-    private AgeRating ageRating;
-
     @NonNull
     @JoinColumn(name = "genre_id")
     @ManyToOne
@@ -48,12 +40,10 @@ public class Film {
     @ManyToOne
     private Country country;
 
-    public Film(String name, int price, Date date, int rating, AgeRating ageRating, Genre genre, Country country) {
+    public Film(String name, int price, Date date, Genre genre, Country country) {
         this.name = name;
         this.price = price;
         this.date = date;
-        this.rating = rating;
-        this.ageRating = ageRating;
         this.genre = genre;
         this.country = country;
     }

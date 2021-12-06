@@ -38,15 +38,6 @@ public class BuyingFilmsServiceImpl implements BuyingFilmsService {
     }
 
     @Override
-    public Page<BuyingFilms> getFavoriteFilmsByAccountId(Long accountId, PageDto pageDto) {
-        if(!accountRepository.existsById(accountId))
-            throw new ResourceNotFoundException(
-                    "The account with id=" + accountId + " does not exist.");
-
-        return buyingFilmsRepository.findAllByAccount_IdAndFavoriteIsTrue(accountId, pageDto.getPageable());
-    }
-
-    @Override
     public BuyingFilms addBuyingFilm(BuyingFilmsModel buyingFilmsModel) {
         Account account = accountRepository
                 .findById(buyingFilmsModel.getAccountId())
@@ -71,7 +62,7 @@ public class BuyingFilmsServiceImpl implements BuyingFilmsService {
                     film.getId());
         }
         BuyingFilms buyingFilms = new BuyingFilms(film, account,
-                buyingFilmsModel.getDate(), buyingFilmsModel.isFavorite(), buyingFilmsModel.getComment(), buyingFilmsModel.getScore());
+                buyingFilmsModel.getDate());
         buyingFilmsRepository.save(buyingFilms);
         return buyingFilms;
     }

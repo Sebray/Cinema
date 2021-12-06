@@ -20,10 +20,6 @@
             <not>
                 <tableExists tableName="list_of_films"/>
             </not>
-            <not>
-                <tableExists tableName="age_rating"/>
-            </not>
-
                 <not>
                     <tableExists tableName="genre"/>
                 </not>
@@ -36,15 +32,6 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="nvarchar2(40)">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <createTable tableName="age_rating">
-            <column name="id" type="bigint" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="limit" type="nvarchar2(4)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -73,9 +60,6 @@
             </column>
             <column name="first_name" type="nvarchar2(20)" defaultValue="account"/>
             <column name="last_name" type="nvarchar2(20)" defaultValue="account"/>
-            <column name="birthday" type="date">
-                <constraints nullable="false"/>
-            </column>
             <column name="country_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
@@ -92,10 +76,6 @@
                 <constraints nullable="false"/>
             </column>
             <column name="date" type="date"/>
-            <column name="rating" type="bigint" defaultValue="0"/>
-            <column name="age_rating_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
                 <column name="genre_id" type="bigint">
             <constraints nullable="false"/>
                 </column>
@@ -114,9 +94,6 @@
             <column name="date" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_favorite" type="boolean" defaultValueBoolean="false"/>
-            <column name="comment" type="nvarchar2(255)"/>
-            <column name="score" type="smallint"/>
         </createTable>
 
 
@@ -124,8 +101,6 @@
         <addForeignKeyConstraint baseTableName="film" baseColumnNames="country_id" constraintName="fk_film_country_country_id" referencedTableName="country"
                                  referencedColumnNames="id"/>
         <addForeignKeyConstraint baseTableName="account" baseColumnNames="country_id" constraintName="fk_account_country_country_id" referencedTableName="country"
-                                 referencedColumnNames="id"/>
-        <addForeignKeyConstraint baseTableName="film" baseColumnNames="age_rating_id" constraintName="fk_film_age_rating_id" referencedTableName="age_rating"
                                  referencedColumnNames="id"/>
         <addForeignKeyConstraint baseTableName="film" baseColumnNames="genre_id" constraintName="fk_film_genre_genre_id" referencedTableName="genre"
                                  referencedColumnNames="id"/>
@@ -141,7 +116,6 @@
             <dropTable tableName="film"/>
             <dropTable tableName="list_of_films"/>
             <dropTable tableName="country"/>
-            <dropTable tableName="age_rating"/>
             <dropTable tableName="genre"/>
         </rollback>
     </changeSet>

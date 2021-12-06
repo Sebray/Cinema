@@ -17,7 +17,5 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
 
     Page<Film> findAllByGenreId(Long genreId, Pageable pageable);
 
-    Page<Film> findAllByAgeRating_Id(Long ageRatingId, Pageable pageable);
-
     boolean existsByNameAndDate(String name, Date date);
 }

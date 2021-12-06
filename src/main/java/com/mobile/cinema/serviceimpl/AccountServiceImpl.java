@@ -44,7 +44,7 @@ public class AccountServiceImpl implements AccountService {
             throw new ResourceAlreadyExistsException("The user with such login and password already exists.");
         }
         Account account = new Account(accountModel.getLogin(), accountModel.getPassword(),
-                accountModel.getFirstName(), accountModel.getLastName(), accountModel.getBirthday(), country);
+                accountModel.getFirstName(), accountModel.getLastName(), country);
         accountRepository.save(account);
         return account;
     }

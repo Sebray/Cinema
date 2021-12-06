@@ -36,22 +36,16 @@ public class Account {
     @Column(name = "last_name")
     private String lastName = "user";
 
-    @Column(name = "birthday")
-    @DateTimeFormat(pattern ="yyyy-MM-dd")
-    @NonNull
-    private Date birthday;
-
     @NonNull
     @JoinColumn(name = "country_id")
     @ManyToOne
     private Country country;
 
-    public Account(String login, String password, String firstName, String lastName, Date birthday, Country country) {
+    public Account(String login, String password, String firstName, String lastName, Country country) {
         this.login = login;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.birthday = birthday;
         this.country = country;
     }
 }

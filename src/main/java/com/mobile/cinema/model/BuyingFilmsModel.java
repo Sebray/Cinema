@@ -26,14 +26,5 @@ public class BuyingFilmsModel {
     @JsonProperty(value = "date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
-
-    @JsonProperty(value = "isFavorite")
-    private boolean isFavorite = false;
-
-    @JsonProperty(value = "comment")
-    private String comment = "";
-
-    @JsonProperty(value = "score")
-    private int score = 0;
 }
 
