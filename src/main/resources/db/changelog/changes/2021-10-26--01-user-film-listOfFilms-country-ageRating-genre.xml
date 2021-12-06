@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="1" author="sviridov">
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <not>
+                    <tableExists tableName="account"/>
+                </not>
+            <not>
+                <tableExists tableName="country"/>
+            </not>
+            <not>
+                <tableExists tableName="film"/>
+            </not>
+            <not>
+                <tableExists tableName="list_of_films"/>
+            </not>
+            <not>
+                <tableExists tableName="age_rating"/>
+            </not>
+
+                <not>
+                    <tableExists tableName="genre"/>
+                </not>
+               </and>
+        </preConditions>
+
+
+        <createTable tableName="genre">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="nvarchar2(40)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="age_rating">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="limit" type="nvarchar2(4)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="country">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="nvarchar2(40)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="account">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="login" type="nvarchar2(25)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="nvarchar2(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="balance" type="bigint" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="nvarchar2(20)" defaultValue="account"/>
+            <column name="last_name" type="nvarchar2(20)" defaultValue="account"/>
+            <column name="birthday" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="film">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="nvarchar2(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="bigint" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="date"/>
+            <column name="rating" type="bigint" defaultValue="0"/>
+            <column name="age_rating_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+                <column name="genre_id" type="bigint">
+            <constraints nullable="false"/>
+                </column>
+            <column name="country_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="list_of_films">
+            <column name="film_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="account_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_favorite" type="boolean" defaultValueBoolean="false"/>
+            <column name="comment" type="nvarchar2(255)"/>
+            <column name="score" type="smallint"/>
+        </createTable>
+
+
+
+        <addForeignKeyConstraint baseTableName="film" baseColumnNames="country_id" constraintName="fk_film_country_country_id" referencedTableName="country"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="account" baseColumnNames="country_id" constraintName="fk_account_country_country_id" referencedTableName="country"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="film" baseColumnNames="age_rating_id" constraintName="fk_film_age_rating_id" referencedTableName="age_rating"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="film" baseColumnNames="genre_id" constraintName="fk_film_genre_genre_id" referencedTableName="genre"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="list_of_films" baseColumnNames="film_id" constraintName="fk_list_of_films_film_film_id" referencedTableName="film"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="list_of_films" baseColumnNames="account_id" constraintName="fk_list_of_films_account_account_login" referencedTableName="account"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropAllForeignKeyConstraints baseTableName="account"/>
+            <dropAllForeignKeyConstraints baseTableName="film"/>
+            <dropAllForeignKeyConstraints baseTableName="list_of_films"/>
+            <dropTable tableName="account"/>
+            <dropTable tableName="film"/>
+            <dropTable tableName="list_of_films"/>
+            <dropTable tableName="country"/>
+            <dropTable tableName="age_rating"/>
+            <dropTable tableName="genre"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

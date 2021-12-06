@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="3" author="sviridov" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <tableIsEmpty tableName="genre"/>
+        </preConditions>
+        <insert tableName="genre">
+            <column name="name">Комедия</column>
+        </insert>
+        <insert tableName="genre">
+            <column name="name">Ужасы</column>
+        </insert>
+        <insert tableName="genre">
+            <column name="name">Аниме</column>
+        </insert>
+        <insert tableName="genre">
+            <column name="name">Драма</column>
+        </insert>
+        <insert tableName="genre">
+            <column name="name">Фентези</column>
+        </insert>
+        <insert tableName="genre">
+            <column name="name">Фантастика</column>
+        </insert>
+
+        <rollback>
+            <delete tableName="genre"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

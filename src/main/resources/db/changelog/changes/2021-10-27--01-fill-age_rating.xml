@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="4" author="sviridov" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <tableIsEmpty tableName="age_rating"/>
+        </preConditions>
+        <insert tableName="age_rating">
+            <column name="limit">0+</column>
+        </insert>
+        <insert tableName="age_rating">
+            <column name="limit">12+</column>
+        </insert>
+        <insert tableName="age_rating">
+            <column name="limit">16+</column>
+        </insert>
+        <insert tableName="age_rating">
+            <column name="limit">18+</column>
+        </insert>
+
+        <rollback>
+            <delete tableName="age_rating"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
