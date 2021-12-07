@@ -25,7 +25,7 @@ public class GenreController {
 
     @GetMapping
     public ResponseEntity<Iterable<Genre>> getGenres() {
-        Iterable<Genre> genres = genreService.findAll();
+        Iterable<Genre> genres = genreService.getGenres();
         return new ResponseEntity<>(genres, HttpStatus.OK);
     }
 }

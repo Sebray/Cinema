@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "buying_films", schema = "public")
+@Table(name = "list_of_films", schema = "public")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

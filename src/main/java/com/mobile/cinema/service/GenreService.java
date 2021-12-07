@@ -5,5 +5,5 @@ import com.mobile.cinema.entity.Genre;
 import java.util.List;
 
 public interface GenreService {
-    List<Genre> findAll();
+    List<Genre> getGenres();
 }

@@ -6,6 +6,9 @@ import com.mobile.cinema.entity.Country;
 import com.mobile.cinema.service.AccountService;
 import com.mobile.cinema.service.CountryService;
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +26,7 @@ public class CountryController {
 
     @GetMapping
     public ResponseEntity<Iterable<Country>> getCountries() {
-        Iterable<Country> countries = countryService.findAll();
+        Iterable<Country> countries = countryService.getCountries();
         return new ResponseEntity<>(countries, HttpStatus.OK);
     }
 }
