@@ -26,11 +26,6 @@ public class BuyingFilmsController {
         return new ResponseEntity<>(buyingFilmsService.getFilmsByAccountId(accountId, pageDto), HttpStatus.OK);
     }
 
-    @GetMapping("/favorites")
-    public ResponseEntity<Page<BuyingFilms>> getFavoriteFilmsById(@RequestParam Long accountId, PageDto pageDto) {
-        return new ResponseEntity<>(buyingFilmsService.getFavoriteFilmsByAccountId(accountId, pageDto), HttpStatus.OK);
-    }
-
     @PutMapping
     public ResponseEntity<BuyingFilms> updateBuyingFilm(@RequestBody BuyingFilms buyingFilms) {
         return new ResponseEntity<>(buyingFilmsService.updateBuyingFilm(buyingFilms), HttpStatus.OK);
