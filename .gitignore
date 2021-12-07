@@ -34,3 +34,5 @@ build/
 
 ### local config ###
 src/main/resources/application-local.properties
+### liquibase ###
+liquibase.properties
