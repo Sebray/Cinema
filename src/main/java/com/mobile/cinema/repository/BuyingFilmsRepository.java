@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface BuyingFilmsRepository extends JpaRepository<BuyingFilms, BuyingFilmsId> {
     Page<BuyingFilms> findAllByAccount_Id(Long accountId, Pageable pageDto);
     void deleteAllByFilm_Id(Long filmId);
+    void deleteAllByAccount_Id(Long accountId);
     void removeAllByFilm_Id(Long filmId);
     boolean existsByAccountAndFilm(Account account, Film film);
 }

@@ -24,9 +24,9 @@ import javax.transaction.Transactional;
 public class BuyingFilmsServiceImpl implements BuyingFilmsService {
     @PersistenceContext
     protected EntityManager entityManager;
-    BuyingFilmsRepository buyingFilmsRepository;
-    AccountRepository accountRepository;
-    FilmRepository filmRepository;
+    private final BuyingFilmsRepository buyingFilmsRepository;
+    private final AccountRepository accountRepository;
+    private final FilmRepository filmRepository;
 
     @Override
     public Page<BuyingFilms> getFilmsByAccountId(Long accountId, PageDto pageDto) {

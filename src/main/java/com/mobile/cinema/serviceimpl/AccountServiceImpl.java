@@ -6,6 +6,7 @@ import com.mobile.cinema.entity.Account;
 import com.mobile.cinema.exception.ResourceAlreadyExistsException;
 import com.mobile.cinema.exception.ResourceNotFoundException;
 import com.mobile.cinema.model.AccountModel;
+import com.mobile.cinema.repository.BuyingFilmsRepository;
 import com.mobile.cinema.repository.CountryRepository;
 import com.mobile.cinema.repository.AccountRepository;
 import com.mobile.cinema.service.AccountService;
@@ -20,6 +21,8 @@ public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
 
     private final CountryRepository countryRepository;
+
+    private final BuyingFilmsRepository buyingFilmsRepository;
 
     @Override
     public Account getAccountById(Long id) {
@@ -67,6 +70,7 @@ public class AccountServiceImpl implements AccountService {
         if (!accountRepository.existsById(id))
             throw new ResourceNotFoundException("The account with id=" + id + " does not exist.");
 
+        buyingFilmsRepository.deleteAllByAccount_Id(id);
         accountRepository.deleteById(id);
     }
 }
